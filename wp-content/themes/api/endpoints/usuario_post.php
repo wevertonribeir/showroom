@@ -42,6 +42,15 @@
           update_user_meta($user_id, 'bairro', $bairro);
           update_user_meta($user_id, 'cidade', $cidade);
           update_user_meta($user_id, 'estado', $estado);
+          update_user_meta($user_id, 'cpf', $cpf);
+          update_user_meta($user_id, 'cnpj', $cnpj);
+          update_user_meta($user_id, 'nomefantasia', $nomefantasia);
+          update_user_meta($user_id, 'rg', $rg);
+          update_user_meta($user_id, 'nascimento', $nascimento);
+          update_user_meta($user_id, 'obs', $obs);
+          
+
+
         } else {
           $response = new WP_Error('email', 'Email já cadastrado.', array('status' => 403));
         }
