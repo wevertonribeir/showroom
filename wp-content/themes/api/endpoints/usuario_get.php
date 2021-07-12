@@ -17,6 +17,12 @@ function api_usuario_get($request) {
       "bairro" => $user_meta['bairro'][0],
       "cidade" => $user_meta['cidade'][0],
       "estado" => $user_meta['estado'][0],
+      "cpf" => $user_meta['cpf'][0],
+      "cnpj" => $user_meta['cnpj'][0],
+      "nomefantasia" => $user_meta['nomefantasia'][0],
+      "rg" => $user_meta['rg'][0],
+      "nascimento" => $user_meta['nascimento'][0],
+      "obs" => $user_meta['obs'][0],
       "role" => $user->roles[0],
     );
   } else {
@@ -42,6 +48,29 @@ function api_usuarios_get($request) {
 
   if($user_id > 0) {
     $response = get_users();
+    $users = array();
+    foreach ($response as $key => $value) {
+      $user_meta = get_user_meta($value->ID);
+      $users[] = array(
+        "id" => $value->user_login,
+        "nome" => $value->display_name,
+        "email" => $value->user_email,
+        "cep" => $user_meta['cep'][0],
+        "numero" => $user_meta['numero'][0],
+        "rua" => $user_meta['rua'][0],
+        "bairro" => $user_meta['bairro'][0],
+        "cidade" => $user_meta['cidade'][0],
+        "estado" => $user_meta['estado'][0],
+        "cpf" => $user_meta['cpf'][0],
+        "cnpj" => $user_meta['cnpj'][0],
+        "nomefantasia" => $user_meta['nomefantasia'][0],
+        "rg" => $user_meta['rg'][0],
+        "nascimento" => $user_meta['nascimento'][0],
+        "obs" => $user_meta['obs'][0],
+        "role" => $value->roles[0],
+      );
+    }
+    $response = $users;
   } else {
     $response = new WP_Error('permissao', 'Usuário não possui permissão', array('status' => 401));
   }
