@@ -22,6 +22,19 @@ function api_pedido_post($request)
     $adicionais = sanitize_text_field($request['adicionais']);
     $status = sanitize_text_field($request['status']);
 
+    // Dados do Cliente
+    $rua = sanitize_text_field($request['rua']);
+    $cep = sanitize_text_field($request['cep']);
+    $numero = sanitize_text_field($request['numero']);
+    $bairro = sanitize_text_field($request['bairro']);
+    $cidade = sanitize_text_field($request['cidade']);
+    $estado = sanitize_text_field($request['estado']);
+    $cpf = sanitize_text_field($request['cpf']);
+    $cnpj = sanitize_text_field($request['cnpj']);
+    $nomefantasia = sanitize_text_field($request['nomefantasia']);
+    $rg = sanitize_text_field($request['rg']);
+    $nascimento = sanitize_text_field($request['nascimento']);
+
     $usuario_id = $user->user_login;
 
     $response = array(
@@ -45,6 +58,19 @@ function api_pedido_post($request)
         'adicionais' => $adicionais,
         'status' => $status,
         'usuario_id' => $usuario_id,
+
+        // Dados do Cliente
+        'rua' => $rua,
+        'cep' => $cep,
+        'numero' => $numero,
+        'bairro' => $bairro,
+        'cidade' => $cidade,
+        'estado' => $estado,
+        'cpf' => $cpf,
+        'cnpj' => $cnpj,
+        'nomefantasia' => $nomefantasia,
+        'rg' => $rg,
+        'nascimento' => $nascimento
       ),
     );
 
