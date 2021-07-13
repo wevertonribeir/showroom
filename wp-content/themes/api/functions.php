@@ -26,6 +26,7 @@
     require_once($template_diretorio. "/endpoints/produto_delete.php");
 
     require_once($template_diretorio. "/endpoints/pedido_post.php");
+    require_once($template_diretorio. "/endpoints/pedido_get.php");
 
     require_once($template_diretorio. "/endpoints/produto_image_post.php");
     require_once($template_diretorio. "/endpoints/produto_image_delete.php");
@@ -60,6 +61,20 @@
         $query = new WP_Query(array(
             'name' => $slug,
             'post_type' => 'marca',
+            'numberposts' => 1,
+            'fields' => 'ids'
+        ));
+
+        $posts = $query->get_posts();
+
+        return array_shift($posts);
+    }
+
+    function get_pedido_id_by_slug($slug){
+
+        $query = new WP_Query(array(
+            'name' => $slug,
+            'post_type' => 'pedido',
             'numberposts' => 1,
             'fields' => 'ids'
         ));
